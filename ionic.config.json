@@ -1,0 +1,7 @@
+{
+  "name": "llistaApps",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

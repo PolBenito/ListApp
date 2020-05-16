@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pendientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ng-container *ngFor="let lista of listaService.v_listas">
+      <ion-item *ngIf="lista.completada == false">
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="primary" expandable (click)="editList(lista)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+          <ion-item button (click)="presentModal(lista)">
+            <ion-label>{{ lista.nombre }}</ion-label>
+            <p item-right style="color: gray"> {{ lista.items.length }} cosas</p>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" expandable (click)="delete(lista)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="showAlert()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

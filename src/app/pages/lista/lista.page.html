@@ -1,0 +1,38 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="Close()"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleLista">{{ listaService.v_listas[id].nombre }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-item> -->
+    <!-- <ion-label position="stacked" class="titleNuevoItem">Nuevo Item <ion-text color="danger">*</ion-text></ion-label> -->
+    <!-- <ion-input id="nuevoItem" required type="text" clear-input (keyup.enter)="addItem($event.target.value)"></ion-input> -->
+    <!-- <ion-input required type="text" (input)="addItem($event.target.value)"></ion-input> -->
+  <!-- </ion-item> -->
+
+  <ion-item class="inputItem">
+    <form (ngSubmit)="addItem()">
+      <ion-label position="floating" class="titleNuevoItem">Nuevo Item <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="text" [(ngModel)]="item.nombre" name="nombre_item"></ion-input>
+    </form>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      TAREAS POR HACER
+    </ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let item of listaService.v_listas[id].items">
+      <ion-checkbox slot="start" [(ngModel)]="item.completado" (ionChange)="GuardarDatosLS()"></ion-checkbox>
+      <ion-label>{{ item.nombre }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
